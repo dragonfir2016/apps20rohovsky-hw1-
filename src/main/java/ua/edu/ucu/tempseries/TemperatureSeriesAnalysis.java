@@ -11,7 +11,7 @@ public class TemperatureSeriesAnalysis {
     private int size;
 
     public TemperatureSeriesAnalysis() {
-        temperatures = new double[1];
+        temperatures = new double[0];
         tempNumb = 0;
         size = 1;
     }
@@ -23,16 +23,7 @@ public class TemperatureSeriesAnalysis {
         this.addTemps(temperatureSeries);
     }
 
-    private void addTemp(double temp){
-        if(tempNumb == size){
-            size = size*2;
-            double[] tempArr = new double[size];
-            System.arraycopy(temperatures, 0, tempArr, 0, tempNumb);
-            temperatures = tempArr;
-        }
-        temperatures[tempNumb] = temp;
-        tempNumb++;
-    }
+
 
     public double average() {
         if (tempNumb == 0) {
@@ -122,6 +113,20 @@ public class TemperatureSeriesAnalysis {
 
     public TempSummaryStatistics summaryStatistics() {
         return new TempSummaryStatistics(average(), deviation(), min(), max());
+    }
+
+    private void addTemp(double temp){
+        if(temperatures.length == 0){
+            temperatures = new double[1];
+        }
+        if(tempNumb == size){
+            size = size*2;
+            double[] tempArr = new double[size];
+            System.arraycopy(temperatures, 0, tempArr, 0, tempNumb);
+            temperatures = tempArr;
+        }
+        temperatures[tempNumb] = temp;
+        tempNumb++;
     }
 
     public double addTemps(double... temps) {
