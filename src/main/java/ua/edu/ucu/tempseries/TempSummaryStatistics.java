@@ -18,4 +18,5 @@ public final class TempSummaryStatistics {
         this.minTemp = min;
         this.maxTemp = max;
     }
+
 }

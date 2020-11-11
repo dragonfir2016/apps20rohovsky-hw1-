@@ -112,11 +112,11 @@ public class TemperatureSeriesAnalysis {
         return Arrays.copyOfRange(tsa.temperatures, 0, tsa.tempNumb);
     }
 
-    public double[] findTempsLessThen(double tempValue) {
+    public double[] findTempsLessThan(double tempValue) {
         return findLessGreater(tempValue, false);
     }
 
-    public double[] findTempsGreaterThen(double tempValue) {
+    public double[] findTempsGreaterThan(double tempValue) {
         return findLessGreater(tempValue, true);
     }
 

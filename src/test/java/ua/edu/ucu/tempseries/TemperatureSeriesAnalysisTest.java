@@ -39,7 +39,7 @@ public class TemperatureSeriesAnalysisTest {
 
         double actualResult = seriesAnalysis.average();
         
-        assertEquals(expResult, actualResult, 0.00001);        
+        assertEquals(expResult, actualResult, 0.00001);
     }
     
 
