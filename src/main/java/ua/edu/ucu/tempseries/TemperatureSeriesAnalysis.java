@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
-    private static final int minTemp = -273;
+    private static final int MIN_TEMP = -273;
 
     private double[] temperatures;
     private int tempNumb;
@@ -41,7 +41,7 @@ public class TemperatureSeriesAnalysis {
 
         double sumDev = 0;
         for (double temp : temperatures) {
-            sumDev += Math.pow(temp-mean, 2);
+            sumDev += (temp-mean)*(temp-mean);
         }
         return Math.sqrt(sumDev/ tempNumb);
     }
@@ -54,13 +54,13 @@ public class TemperatureSeriesAnalysis {
         return findMinMax(true);
     }
 
-    private double findMinMax(boolean indicator){
+    private double findMinMax(boolean indicator) {
         if (tempNumb == 0) {
             throw new IllegalArgumentException();
         }
         double var = temperatures[0];
-        for(double temp : temperatures){
-            if(indicator && temp > var || !indicator && temp < var){
+        for (double temp : temperatures) {
+            if (indicator && temp > var || !indicator && temp < var) {
                 var = temp;
             }
         }
@@ -79,13 +79,13 @@ public class TemperatureSeriesAnalysis {
         double dist = Math.abs(tempValue - temperatures[0]);
         double closest = temperatures[0];
 
-        for(double temp : temperatures){
+        for (double temp : temperatures) {
             double diff = Math.abs(tempValue - temp);
 
-            if (diff == dist){
+            if (diff == dist) {
                 closest = Math.max(closest, temp);
             }
-            else if (diff < dist){
+            else if (diff < dist) {
                 dist = diff;
                 closest = temp;
             }
@@ -115,11 +115,11 @@ public class TemperatureSeriesAnalysis {
         return new TempSummaryStatistics(average(), deviation(), min(), max());
     }
 
-    private void addTemp(double temp){
-        if(temperatures.length == 0){
+    private void addTemp(double temp) {
+        if (temperatures.length == 0) {
             temperatures = new double[1];
         }
-        if(tempNumb == size){
+        if (tempNumb == size) {
             size = size*2;
             double[] tempArr = new double[size];
             System.arraycopy(temperatures, 0, tempArr, 0, tempNumb);
@@ -130,12 +130,12 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double addTemps(double... temps) {
-        for(double temp : temps){
-            if(temp < minTemp){
+        for (double temp : temps) {
+            if (temp < MIN_TEMP) {
                 throw new InputMismatchException();
             }
         }
-        for(double temp : temps){
+        for (double temp : temps) {
             addTemp(temp);
         }
         return average()*tempNumb;
