@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
     private static final int MIN_TEMP = -273;
+    private static final double DELTA = 0.0000001;
 
     private double[] temperatures;
     private int tempNumb;
@@ -82,7 +83,7 @@ public class TemperatureSeriesAnalysis {
         for (double temp : temperatures) {
             double diff = Math.abs(tempValue - temp);
 
-            if (Math.abs(diff - dist) < 0.0000001) {
+            if (Math.abs(diff - dist) < DELTA) {
                 closest = Math.max(closest, temp);
             }
             else if (diff < dist) {
