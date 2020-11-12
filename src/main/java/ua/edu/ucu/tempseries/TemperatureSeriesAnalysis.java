@@ -82,7 +82,7 @@ public class TemperatureSeriesAnalysis {
         for (double temp : temperatures) {
             double diff = Math.abs(tempValue - temp);
 
-            if (diff == dist) {
+            if (Math.abs(diff - dist) < 0.0000001) {
                 closest = Math.max(closest, temp);
             }
             else if (diff < dist) {
